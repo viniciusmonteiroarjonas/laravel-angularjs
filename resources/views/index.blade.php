@@ -7,6 +7,9 @@
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="node_modules/jquery/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+	<!-- Bootstrap Select -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 	<!-- Angular -->
 	<script type="text/javascript" src="node_modules/angular/angular.js"></script>
 	<!-- App Bootstrap JS Laravel -->
@@ -26,10 +29,10 @@
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 				<i class="fa fa-plus"></i> Novo Registro
 			</button>
-				<button type="button" class="btn btn-success">
+				<button type="button" class="btn btn-default">
 				<i class="fa fa-file-excel-o" aria-hidden="true"></i>
 			</button>
-			<button type="button" class="btn btn-danger">
+			<button type="button" class="btn btn-default">
 				<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 			</button>
 			</div>
@@ -53,11 +56,12 @@
 					</thead>
 					<tbody>
 						<tr dir-paginate="pessoa in pessoas | filter: pesquisar | itemsPerPage: 5 | orderBy:sortKey:reverse">
-							<td>{{pessoa.id}}</td>
-							<td>{{pessoa.nome}}</td>
-							<td>{{pessoa.email}}</td>
-							<td>{{pessoa.login}}</td>
-							<td>{{pessoa.status}}</td>
+							<td><%pessoa.id%></td>
+							<td><%pessoa.nome%></td>
+							<td><%pessoa.email%></td>
+							<td><%pessoa.login%></td>
+							<td ng-if="pessoa.status == '1'"><span class="label label-success">Ativo</span></td>
+							<td ng-if="pessoa.status == '0'"><span class="label label-danger">Inativo</span></td>
 							<td>
 								<button class="btn btn-default btn-xs">
 									<i class="fa fa-eye"></i>
@@ -69,13 +73,17 @@
 									<i class="fa fa-trash"></i>
 								</button>
 							</td>
+							<!-- Se não houver nenhum regsitro na tabela -->
+			                <tr ng-if="pessoas.length == 0">
+			                    <td colspan="5" class="text-center">Nenhum Registro encontrado</td>
+			                </tr>
 						</tr>
 					</tbody>
 				</table>
 				<dir-pagination-controls
-			boundary-links="true"
-			direction-links="true" >
-			</dir-pagination-controls>
+					boundary-links="true"
+					direction-links="true" >
+				</dir-pagination-controls>
 			</div>
 		</div>
 	</div>

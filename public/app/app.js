@@ -1,5 +1,9 @@
 'use strict';
-var app = angular.module('cdg', ['angularUtils.directives.dirPagination']);
+var app = angular.module('cdg', ['angularUtils.directives.dirPagination'], function($interpolateProvider){
+    $interpolateProvider.startSymbol('<%');
+    $interpolateProvider.endSymbol('%>');
+});
+
 // Service
 app.factory('pessoaService', function($http) {
     return {
