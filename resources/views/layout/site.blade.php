@@ -18,7 +18,7 @@
 	<script src="app/dirPagination.js"></script>
   <!-- Sweet Alert -->
   <link rel="stylesheet" src="{{asset('node_modules/sweetalert2/dist/sweetalert2.css')}}">
-  <script type="text/javascript" src="{{asset('node_modules/sweetalert2/dist/sweetalert2.js')}}"></script>
+  <script type="text/javascript" src="https://unpkg.com/sweetalert2@7.4.1/dist/sweetalert2.all.js"></script>
 </head>
 <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
