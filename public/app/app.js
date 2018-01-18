@@ -36,18 +36,24 @@ app.controller('pessoaController', function($scope, pessoaService) {
     }
     $scope.editar = function(data) {
         $scope.pessoa = data;
-        $('#myModal').modal('show');
+        $('#editarModal').modal('show');
     }
+
+     $scope.cadastro = function(data) {
+        delete $scope.pessoa;
+        $('#cadastroModal').modal('show');
+    }
+
     $scope.salvar = function() {
         if ($scope.pessoa.id) {
             pessoaService.edita($scope.pessoa).success(function(res) {
+                $('#editarModal').modal('hide');
                 $scope.listar();
-                $('#myModal').modal('hide');
             });
         } else {
             pessoaService.cadastra($scope.pessoa).success(function(res) {
+                $('#cadastroModal').modal('hide');
                 $scope.listar();
-                $('#myModal').modal('hide');
             });
         }
     }

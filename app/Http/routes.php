@@ -1,14 +1,23 @@
 <?php
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| SITE
 |--------------------------------------------------------------------------
  */
 
+//Listagem de Pessoas
 Route::get('/', function () {
-	return view('index');
+	return view('web/pessoa/index');
+});
+Route::get('cadastro/pessoas', function () {
+	return view('web/pessoa/cadastro');
 });
 
+/*
+|--------------------------------------------------------------------------
+| API
+|--------------------------------------------------------------------------
+ */
 Route::group(['prefix' => 'api'], function () {
 	Route::get('pessoas', 'PessoaController@lista');
 	Route::post('pessoas', 'PessoaController@novo');
